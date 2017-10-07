@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>変更01</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="description" content="" />
+<link rel="stylesheet" href="css/reset.css" />
+<link rel="stylesheet" href="css/style.css" />
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.11.1.min.js"></script>
+<script src="js/common.js"></script>
+<script src="js/smoothscroll.js"></script>
+
+<style>
+
+.wrap{
+	width:980px;
+	margin:0 auto;
+}
+
+
+.box01{
+	width:800px;
+	height:400px;
+	background:#bbb;
+	opacity: 0;
+}
+
+.box02{
+	width:800px;
+	height:400px;
+}
+
+</style>
+
+<script>
+$(function(){
+
+
+$('.scroll').each(function(){
+
+	scrollaction( { item : $(this) , deray : 500 });
+
+});
+
+
+function scrollaction(obj){
+
+	var views = {
+
+		top : obj.item.offset().top - 400,
+		deray : obj.deray,
+
+		action : function(){
+			$(window).scroll(function(){
+
+				var scroll = $(this).scrollTop();
+
+				if(scroll > views.top){
+					timer(obj.item , views.deray);
+				}
+
+			console.log(scroll);
+
+			});
+		}
+
+	}
+
+	views.action();
+
+}
+
+function timer(target, deray){
+
+	setTimeout(function(){
+		target.animate({
+			opacity : 1
+		})
+	},deray);
+
+}
+
+});
+
+</script>
+<!-- /javascript -->
+
+<!--[if lt IE 9]>
+	<script src="js/html5shiv.js"></script>
+<![endif]-->
+
+</head>
+<body style='height:1500px'>
+
+<div class="wrap">
+
+	<div style="margin-bottom:500px"></div>
+
+	<div class='box01 scroll' data-position=""></div>
+	<div class='box02 scroll'></div>
+
+</div>
+
+</body>
+</html>
